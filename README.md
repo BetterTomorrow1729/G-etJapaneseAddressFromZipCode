@@ -1,0 +1,2 @@
+# G-etJapaneseAddressFromZipCode
+日本の郵便番号から住所・大口事業所住所を求めるプログラム群
