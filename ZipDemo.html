@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>郵便番号住所検索デモ</title>
+    </head>
+
+    <body>
+        <?php    
+            $url = "https://tahprpe7ixyrlnde7kccfiewj40afjyi.lambda-url.ap-northeast-3.on.aws?ZipCode=" . $_POST["ZipCode"];
+
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            $reply = curl_exec($ch);
+
+            switch (curl_getinfo($ch, CURLINFO_HTTP_CODE))
+            {
+                case 200: {
+                }
+                default: {
+                    echo "<script type="text/javascript">alert('$reply');</script>";
+                }
+            };
+
+            curl_close($ch);
+        ?>
+        <form action="" method="POST">
+            <label for="ZipCode">郵便番号:</label>
+            <input required size="7" minlength="7" maxlength="7" pattern="\d{7}" id="ZipCode" name="ZipCode" type="text">
+            <button type="submit">住所検索</button>
+        </form>
+    </body>
+</html>
